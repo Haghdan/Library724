@@ -1,0 +1,39 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+ <div>
+<div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs"class="card-body" dir="rtl">
+      <li class="nav-item"class="card-body" dir="rtl">
+        <a class="nav-link active"hret="#" Fstyle="color:red ;"class="card-body" dir="rtl" href="#"> کتاب ها</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body"class="card-body" dir="rtl" align="right">
+        {% for book in page_obj %}
+            <img src = "{{book.photo.url}}"  width="100px" height="100px" dir="ltr" align="center">
+            <a href="{{ book.get_absolute_url }}" class="card-body" dir="rtl" align="right">{{ book.name }}</a>
+            
+            <p></p>
+        {% endfor %}
+    </div>
+    </div>
+    <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}            
+            <a href="?page={{ page_obj.previous_page_number }}">قبلی</a>
+        {% endif %}
+
+        <span class="current">
+            صفحه {{ page_obj.number }} از {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">بعدی</a>            
+        {% endif %}
+    </span>
+    </div>
+{% endblock %}
